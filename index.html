@@ -12,22 +12,44 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh; 
       margin: 0;
-      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box; 
     }
 
     h1 {
       color: #ffffff;
       font-size: 2.5rem;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8), 
+        0 0 10px rgba(255, 0, 255, 1), 
+        0 0 20px rgba(255, 0, 255, 1), 
+        0 0 30px rgba(255, 0, 255, 1); 
       margin-bottom: 100px;
+      animation: glow 1.5s infinite alternate; 
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.8),
+                     0 0 10px rgba(255, 0, 255, 1),
+                     0 0 20px rgba(255, 0, 255, 1),
+                     0 0 30px rgba(255, 0, 255, 1);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255, 0, 255, 1),
+                     0 0 30px rgba(255, 0, 255, 1),
+                     0 0 40px rgba(255, 0, 255, 1),
+                     0 0 50px rgba(255, 0, 255, 1);
+      }
     }
 
     .gallery {
       display: flex;
       justify-content: space-around;
       width: 80%;
+      flex-wrap: wrap; 
     }
 
     .photo-container {
@@ -61,8 +83,9 @@
 
     .name {
       font-size: 1.5rem;
-      color: white;
+      color: rgb(0, 255, 42);
       text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+      margin-top: 10px;
     }
 
     @keyframes rotateY {
@@ -74,7 +97,6 @@
       }
     }
 
-  
     @media screen and (max-width: 768px) {
       .gallery {
         flex-direction: column;
@@ -89,7 +111,6 @@
 </head>
 <body>
 
-  
   <h1>Featured Projects by Our Talented Designers</h1>
 
   <div class="gallery">
@@ -97,31 +118,29 @@
       <div class="photo-card">
         <img src="net.jpg" alt="Photo 1">
       </div>
-      <div class="name">BALASKANTHAN AK</div>
+      <div class="name" data-name="BALASKANTHAN AK"></div>
     </div>
     <div class="photo-container">
       <div class="photo-card">
         <img src="net.jpg" alt="Photo 2">
       </div>
-      <div class="name">PRITTO RUBAN R</div>
+      <div class="name" data-name="PRITTO RUBAN R"></div>
     </div>
     <div class="photo-container">
       <div class="photo-card">
         <img src="net.jpg" alt="Photo 3">
       </div>
-      <div class="name">KALAISELVAN G</div>
-      
+      <div class="name" data-name="KALAISELVAN G"></div>
     </div>
     <div class="photo-container">
       <div class="photo-card">
         <img src="net.jpg" alt="Photo 4">
       </div>
-      <div class="name">ABISHEK R</div>
+      <div class="name" data-name="ABISHEK R"></div>
     </div>
   </div>
 
   <script>
-    
     document.querySelectorAll('.photo-card').forEach(card => {
       card.addEventListener('mouseover', () => {
         card.style.animationPlayState = 'paused';
@@ -130,6 +149,26 @@
       card.addEventListener('mouseout', () => {
         card.style.animationPlayState = 'running';
       });
+    });
+
+    function typeName(element) {
+      const name = element.getAttribute('data-name');
+      let index = 0;
+
+      function typeLetter() {
+        if (index < name.length) {
+          element.textContent += name.charAt(index);
+          index++;
+          setTimeout(typeLetter, 0); 
+        }
+      }
+
+      typeLetter();
+    }
+
+    
+    document.querySelectorAll('.name').forEach((nameElement, index) => {
+      setTimeout(() => typeName(nameElement), index * 1000); 
     });
   </script>
 
