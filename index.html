@@ -7,27 +7,27 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff00ff, #2b00ff);
+      background: linear-gradient(135deg, #1a1a1a, #333333);
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      min-height: 100vh; 
+      min-height: 100vh;
       margin: 0;
       padding: 20px;
-      box-sizing: border-box; 
+      box-sizing: border-box;
     }
 
     h1 {
       color: #ffffff;
       font-size: 2.5rem;
-      text-shadow: 
-        0 0 5px rgba(255, 255, 255, 0.8), 
-        0 0 10px rgba(255, 0, 255, 1), 
-        0 0 20px rgba(255, 0, 255, 1), 
-        0 0 30px rgba(255, 0, 255, 1); 
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.8),
+        0 0 10px rgba(255, 0, 255, 1),
+        0 0 20px rgba(255, 0, 255, 1),
+        0 0 30px rgba(255, 0, 255, 1);
       margin-bottom: 100px;
-      animation: glow 1.5s infinite alternate; 
+      animation: glow 1.5s infinite alternate;
     }
 
     @keyframes glow {
@@ -49,11 +49,34 @@
       display: flex;
       justify-content: space-around;
       width: 80%;
-      flex-wrap: wrap; 
+      flex-wrap: wrap;
     }
 
     .photo-container {
       text-align: center;
+      position: relative;
+      margin-bottom: 50px;
+    }
+
+    .box-container {
+      position: relative;
+      width: 250px;
+      height: 380px;
+      background-color: rgb(42, 41, 41);
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10px;
+      box-sizing: border-box;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .box-container:hover {
+      transform: translateY(-10px);
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
     }
 
     .photo-card {
@@ -65,16 +88,18 @@
       text-align: center;
       animation: rotateY 3s infinite linear;
       transform-style: preserve-3d;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      backface-visibility: hidden;
-      transition: transform 0.5s;
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    animation: coin-flip 4s infinite linear; 
+    box-shadow: 0 0 15px #fafafa; 
+    cursor: pointer;
+    transition: all 0.5s ease;
     }
 
     .photo-card:hover {
@@ -86,12 +111,77 @@
       color: rgb(0, 255, 42);
       text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
       margin-top: 10px;
-      transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition for hover effect */
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
-    .name:hover {
-      color: rgb(255, 255, 0); /* Change text color on hover */
-      text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 0, 1); /* Glow effect on hover */
+    .box-container:hover .name {
+      color: rgb(255, 255, 255);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 20px rgb(255, 255, 255);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      opacity: 0; 
+      transition: opacity 0.5s ease; 
+    }
+
+    .box-container:hover .social-links {
+      opacity: 1; 
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+      opacity: 0; 
+      transform: translateY(10px); 
+      transition: opacity 0.5s ease, transform 0.5s ease; 
+    }
+
+  
+    .box-container:hover .social-links a {
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+
+    .social-links a:nth-child(1) {
+      transition-delay: 0.2s; 
+    }
+
+    .social-links a:nth-child(2) {
+      transition-delay: 0.4s;
+    }
+
+    .social-links a:nth-child(3) {
+      transition-delay: 0.6s; 
+    }
+
+    .social-links a:nth-child(4) {
+      transition-delay: 0.8s; 
+    }
+
+    
+    .social-links a[href*="mailto"] {
+      color: #d44638; 
+    }
+
+    .social-links a[href*="instagram"] {
+      color: #e1306c; 
+    }
+
+    .social-links a[href*="linkedin"] {
+      color: #0077b5; 
+    }
+
+    .social-links a[href*="github"] {
+      color: #333; 
+    }
+
+    .social-links a:hover {
+      color: rgb(255, 0, 0);
     }
 
     @keyframes rotateY {
@@ -114,69 +204,79 @@
       }
     }
   </style>
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <h1>Featured Projects by Our Talented Designers</h1>
+  <h1>Featured Projects by Our Talented Team</h1>
 
   <div class="gallery">
+  
     <div class="photo-container">
-      <div class="photo-card">
-        <img src="net.jpg" alt="Photo 1">
+      <div class="box-container">
+        <div class="photo-card">
+          <img src="net.jpg" alt="Photo 1">
+        </div>
+        <div class="name">BALASKANTHAN AK</div>
+        <div class="social-links">
+          <a href="mailto:example1@example.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
       </div>
-      <div class="name" data-name="BALASKANTHAN AK"></div>
     </div>
+
+  
     <div class="photo-container">
-      <div class="photo-card">
-        <img src="net.jpg" alt="Photo 2">
+      <div class="box-container">
+        <div class="photo-card">
+          <img src="net.jpg" alt="Photo 2">
+        </div>
+        <div class="name">PRITTO RUBAN R</div>
+        <div class="social-links">
+          <a href="mailto:example2@example.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
       </div>
-      <div class="name" data-name="PRITTO RUBAN R"></div>
     </div>
-    <div class="photo-container">
-      <div class="photo-card">
-        <img src="net.jpg" alt="Photo 3">
-      </div>
-      <div class="name" data-name="KALAISELVAN G"></div>
-    </div>
-    <div class="photo-container">
-      <div class="photo-card">
-        <img src="net.jpg" alt="Photo 4">
-      </div>
-      <div class="name" data-name="ABISHEK R"></div>
-    </div>
-  </div>
-
-  <script>
-    document.querySelectorAll('.photo-card').forEach(card => {
-      card.addEventListener('mouseover', () => {
-        card.style.animationPlayState = 'paused';
-      });
-
-      card.addEventListener('mouseout', () => {
-        card.style.animationPlayState = 'running';
-      });
-    });
-
-    function typeName(element) {
-      const name = element.getAttribute('data-name');
-      let index = 0;
-
-      function typeLetter() {
-        if (index < name.length) {
-          element.textContent += name.charAt(index);
-          index++;
-          setTimeout(typeLetter, 0); 
-        }
-      }
-
-      typeLetter();
-    }
 
     
-    document.querySelectorAll('.name').forEach((nameElement, index) => {
-      setTimeout(() => typeName(nameElement), index * 1000); 
-    });
-  </script>
+    <div class="photo-container">
+      <div class="box-container">
+        <div class="photo-card">
+          <img src="net.jpg" alt="Photo 3">
+        </div>
+        <div class="name">KALAISELVAN G</div>
+        <div class="social-links">
+          <a href="mailto:example3@example.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="photo-container">
+      <div class="box-container">
+        <div class="photo-card">
+          <img src="net.jpg" alt="Photo 4">
+        </div>
+        <div class="name">ABISHEK R</div>
+        <div class="social-links">
+          <a href="mailto:example4@example.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
